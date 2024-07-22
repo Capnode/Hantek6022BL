@@ -15,23 +15,26 @@ The original software from [Hantek](https://www.hantek.com/products/detail/153) 
 1. Download the latest release of [OpenHantek](https://github.com/OpenHantek/OpenHantek6022/releases).
 1. Extract the zip file to a location of your choice.
 1. Plug in the device and make sure it can be found in the Device Manager under Other devices as an Unknown device. Uninstall any other Hantek 6022 device already installed.
-1. Install USB driver from the driver folder. Right-click on OpenHantek.inf and select "install" from the pull-down menu.
-1. Make sure the push button on the back of the Hantek 6022BL is in the the inner position marked "H".
+1. Install USB driver from the driver folder. Right-click on `OpenHantek.inf` and select "install" from the pull-down menu.
+1. Make sure the push button on the back of the Hantek 6022BL is in the inner position marked "H".
 1. Unplug and insert the USB cable to restart the device.
-1. Start the software named OpenHanek.exe. The device is located and firmware is loaded after power on.
+1. Start the software named `OpenHanek.exe`. The device is now located and the firmware is reloaded after power on.
 
 ## PulseView
-The only provider of logic analyzer software on Linux, Mac and Windows is  [sigrok](https://sigrok.org). They offer two software tools, sigrok-cli which is command line based and PulseView which has a graphical user interface. Pulseview supports running multiple instances in parallel. There are some difficulties to make PulseView work with the USB driver, especially with all 16 digital channels. Follow the instructions below to make it work.
+The only provider of logic analyzer software on Linux, Mac and Windows is  [sigrok](https://sigrok.org). They offer two software tools, sigrok-cli which is command line based and PulseView which has a graphical user interface. PulseView supports running multiple instances in parallel. There are some difficulties to make PulseView work with the USB driver, especially with all [16 digital channels](https://www.eevblog.com/forum/testgear/hantek-6022bl-logic-analyzer-working-with-sigrok-all-16-channels/). Follow the instructions below to make it work.
 
 ### Install instructions for PulseView on Windows
 1. Install the USB driver as described for OpenHantek6022.
 1. Download and execute [Pulseview](https://sigrok.org/wiki/Downloads) installer.
-1. Make sure the push button on the back of the device is in out position (P).
+1. Make sure the push button on the back of the device is in out position (P) and restart the device.
 1. Start PulseView from the Start menu.
-1. PulseView now starts with <No Device> selected, but with one new device created under Other units in the Device Manager. It is named fx2lafw and is marked with an exclamation mark. Terminate PulseView.
-1. Start another program named Zadig (Pulseview) from the start menu.
-1. Zadig starts with the device fx2lafw selected. Press Install Driver to install the WinUSB driver on that device.
-1. 
+1. PulseView now starts with `<No Device>` selected, but with one new device created under Other units in the Device Manager. It is named `fx2lafw` and is marked with an exclamation mark. Terminate PulseView.
+1. Start program Zadig (Pulseview) from the start menu.
+1. Zadig starts with the device `fx2lafw` selected. Press Install Driver to install the WinUSB driver on the device.
+1. Find PulseView firmware folder: `C:\Program Files\sigrok\PulseView\share\sigrok-firmware`.
+1. Rename file `fx2lafw-saleae-logic.fw` to `fx2lafw-saleae-logic.fw.bak`
+1. Create a copy of file `fx2lafw-sigrok-fx2-16ch.fw` and rename it to `fx2lafw-saleae-logic.fw`.
+1. Unplug and insert the USB cable to restart the device.
+1. Start PulseView and it will hopefully find all 16 channels.
 
 
-[Hantek 6022BL logic analyzer working with sigrok - all 16 channels](https://www.eevblog.com/forum/testgear/hantek-6022bl-logic-analyzer-working-with-sigrok-all-16-channels/)
